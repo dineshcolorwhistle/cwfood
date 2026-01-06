@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\Rule;
+
+class SpecificationArchieve extends Model
+{
+    use HasFactory;
+
+    protected $table = 'specifications_archive';
+
+    protected $fillable = ['spec_id','version','spec_name','spec_sku','spec_type','spec_status','aus_regulatory_code','description','supplier_name','manufacturer_name','manufacturer_address','manufacturer_contact','distributor_name','distributor_contact','compliance_officer','lot_number_format','nutr_serving_size_g','nutr_servings_per_container','nutritional_basis','nutr_energy_kj','nutr_protein_g','nutr_carbohydrate_g','nutr_sodium_mg','nutr_fat_total_g','nutr_fat_saturated_g','nutr_fat_trans_g','nutr_sugars_g','nutr_added_sugars_g','nutr_dietary_fiber_g','nutr_cholesterol_mg','nutr_calcium_mg','nutr_iron_mg','nutr_potassium_mg','nutr_vitamin_d_mcg','nutr_gluten_content','ing_ingredient_list','allergen_statement','allergen_fsanz_declaration','ing_percentage_labelling','ing_food_additive_numbers','phys_appearance','phys_color','phys_odor','phys_texture','phys_density_g_ml','phys_specific_gravity','phys_moisture_percent','phys_ph_level','phys_water_activity','phys_viscosity_cps','micro_total_plate_count_cfu_g_max','micro_yeast_mold_cfu_g_max','micro_coliforms_cfu_g_max','micro_e_coli_cfu_g_max','micro_salmonella_absent_in_g','micro_listeria_absent_in_g','micro_staphylococcus_cfu_g_max','pack_primary_type','pack_primary_material','pack_primary_dimensions_mm','pack_primary_weight_g','pack_secondary_type','pack_secondary_material','pack_secondary_dimensions_mm','pack_units_per_secondary','pack_case_dimensions_mm','pack_case_weight_g','pack_units_per_case','pack_pallet_type','pack_pallet_dimensions_mm','pack_pallet_height_mm','pack_pallet_weight_kg','pack_cases_per_layer','pack_layers_per_pallet','pack_total_cases_per_pallet','id_gtin_13','id_gtin_14','id_sscc','id_batch_code_format','id_barcode_type','cool_primary_country','cool_origin_declaration','cool_percentage_australia','aus_regulatory_status','cool_fsanz_standard_ref','cool_date_marking_requirement','cool_aus_made_claim','cool_aus_owned_claim','cool_aus_grown_claim','cool_label_type','cool_calculation_method','aus_advisory_statements','aus_warning_statements','aus_health_claims','aus_nutrition_content_claims','cert_is_organic','cert_is_halal','cert_is_kosher','cert_is_gluten_free','cert_is_non_gmo','cert_is_fair_trade','cert_certificate_details','storage_temp_min_c','storage_temp_max_c','storage_humidity_min_percent','storage_humidity_max_percent','storage_conditions','best_before_days','use_by_days','shelf_life_type','shelf_life_value','shelf_life_unit','handling_instructions','disposal_instructions','trace_gln','trace_system','trace_recall_procedure','trace_document_required','chem_metal_lead','chem_metal_cadmium','chem_metal_mercury','chem_metal_arsenic','chem_metal_tin','chem_pest_glyphosate','chem_pest_chlorpyrifos','chem_pest_malathion','chem_pest_permethrin','chem_pest_imazalil','chem_pesticide_residues','chem_mycotoxin_aflatoxin_b1','chem_mycotoxin_aflatoxin_total','chem_mycotoxin_ochratoxin_a','chem_mycotoxin_deoxynivalenol','chem_mycotoxin_zearalenone','chem_mycotoxin_patulin','chem_mycotoxins','chem_add_tartrazine','chem_add_cochineal','chem_add_sunset_yellow','chem_add_citric_acid','chem_add_ascorbic_acid','chem_add_monosodium_glutamate','chem_additives','chem_pres_sodium_benzoate','chem_pres_potassium_sorbate','chem_pres_calcium_propionate','chem_pres_sulfur_dioxide','chem_pres_sodium_nitrite','chem_pres_sodium_metabisulfite','chem_preservatives','spec_upload_type','file_name','spec_url','archive','json_object','audit_response','modified_by'];
+    protected $casts = [
+        'audit_response' => 'array',
+    ];
+
+}
