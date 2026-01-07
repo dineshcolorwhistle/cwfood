@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Nutriflow - Login</title>
+    <title>CW Food - Login</title>
 
     <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
 
@@ -44,7 +44,7 @@
                         <div class="card z-index-0 fadeIn3 fadeInBottom">
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2" style="margin-top: -30px;">
                                 <div class="linear-background shadow-primary border-radius-lg py-3 pe-1">
-                                    <h2 class="text-white font-weight-bolder text-center my-2">Nutriflow</h2>
+                                    <h2 class="text-white font-weight-bolder text-center my-2">CW Food</h2>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -86,7 +86,7 @@
                                         <button type="submit" class="btn btn-secondary-blue w-100 my-4 mb-2">Sign in</button>
                                         <p class="mt-3">Don't have an account <a href="{{ route('signup') }}">Start free trial</a></p>
                                     </div>
-                                    <p class="text-sm text-center mt-3"> Forgot your password? Reset your password <a href="{{ route('password.request') }}" class="text-primary text-gradient font-weight-bold">here</a> </p>
+                                    <!-- <p class="text-sm text-center mt-3"> Forgot your password? Reset your password <a href="{{ route('password.request') }}" class="text-primary text-gradient font-weight-bold">here</a> </p> -->
                                 </form>
                             </div>
                         </div>

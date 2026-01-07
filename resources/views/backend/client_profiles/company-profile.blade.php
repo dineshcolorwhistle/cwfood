@@ -6,7 +6,7 @@
         'additional' => '',
     ],
     'breadcrumbItems' => [
-        ['label' => 'Nutriflow Admin', 'url' => '#'],
+        ['label' => 'CW Food Admin', 'url' => '#'],
         ['label' => 'Company Profile']
     ],
 ])

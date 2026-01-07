@@ -9,7 +9,7 @@
 'datatables' => '1',
 ],
 'breadcrumbItems' => [
-['label' => 'Nutriflow Admin', 'url' => '#'],
+['label' => 'CW Food Admin', 'url' => '#'],
 ['label' => 'Support Ticket']
 ],
 ])
