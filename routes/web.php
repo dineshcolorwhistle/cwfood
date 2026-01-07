@@ -89,7 +89,7 @@ Route::middleware('web')
         // add any other custom "web" middlewares you’ve placed in the web group
     ])
     ->group(function () {
-        
+        Route::get('/', fn () => redirect()->route('login'));
         Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
       	Route::post('authenticate', [AuthController::class, 'loginByEmail'])->name('authenticate');
       	Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('password.request');
@@ -111,7 +111,7 @@ Route::middleware('web')
         Route::get('/xero/callback', [XeroController::class, 'callback'])->name('xero.callback');
 });
    
-Route::middleware(['web', 'auth','cognito.id'])->group(function () {
+Route::middleware(['web', 'auth'])->group(function () {
 
     Route::get('/member/subscription/expire', function () {
         return view('backend.subscription-expired'); // resources/views/welcome.blade.php

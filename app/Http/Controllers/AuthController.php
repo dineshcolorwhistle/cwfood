@@ -28,7 +28,7 @@ class AuthController extends Controller
     public function showLoginForm()
     {
         if (Auth::check()) {
-            return redirect()->intended('views.products');
+            return redirect()->route('views.products');
         }
         return view('auth.login');
     }
