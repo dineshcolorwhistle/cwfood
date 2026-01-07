@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Auth,Validator};
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -27,7 +28,7 @@ class AuthController extends Controller
     public function showLoginForm()
     {
         if (Auth::check()) {
-            return redirect()->intended('dashboard');
+            return redirect()->intended('views.products');
         }
         return view('auth.login');
     }
@@ -39,6 +40,29 @@ class AuthController extends Controller
         }   
         return view('auth.signup');
     }
+  
+  	public function loginByEmail(Request $request)
+    {
+ 
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors([
+                'email' => 'User not found'
+            ]);
+        }
+
+        Auth::login($user);
+
+        $request->session()->regenerate();
+
+        return redirect()->route('views.products');
+    }
+
 
     public function company_authenticate(Request $request){
         $validator = Validator::make($request->all(), [
@@ -185,6 +209,16 @@ class AuthController extends Controller
         create_default_freight($clinetDetails['client_id'],$clinetDetails['workspace_id'],$defaultClient,$defaultClientWorkspace);
         create_default_products($clinetDetails['client_id'],$clinetDetails['workspace_id'],$defaultClient,$defaultClientWorkspace);
         return;
+    }
+  
+  	public function logout(Request $request): RedirectResponse
+    {
+        
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+		 return redirect()->route('login');
+        
     }
 
 }

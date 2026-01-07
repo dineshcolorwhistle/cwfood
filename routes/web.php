@@ -89,11 +89,11 @@ Route::middleware('web')
         // add any other custom "web" middlewares you’ve placed in the web group
     ])
     ->group(function () {
-        Route::get('/', fn () => redirect()->route('login'));
-        Route::get('/login', [CognitoAuthController::class, 'redirect'])->name('login');
-        Route::get('/oauth/cognito/callback', [CognitoAuthController::class, 'callback']);
-        Route::post('/logout', [CognitoAuthController::class, 'logout'])->name('logout');
-        Route::get('/logout-complete', fn () => redirect()->route('login'))->name('logout.complete');
+        
+        Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+      	Route::post('authenticate', [AuthController::class, 'loginByEmail'])->name('authenticate');
+      	Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('password.request');
+      	Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('/csrf-refresh', function () {
             return response()->json(['token' => csrf_token()]);
         })->name('csrf.refresh');
