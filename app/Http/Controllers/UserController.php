@@ -99,8 +99,10 @@ class UserController extends Controller
 
             
             // Set default password if not provided
-            if (!$request->filled('password')) {
+            if ($request->filled('password')) {
                 $data['password'] = Hash::make($request->password);
+            }else{
+                $data['password'] = Hash::make('Secret');
             }
 
             // Set additional metadata

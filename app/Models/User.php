@@ -23,7 +23,8 @@ class User extends Model implements Authenticatable
         'picture',
         'created_by',
         'updated_by',
-        'cognito_sub'
+        'cognito_sub',
+        'password'
     ];
 
     

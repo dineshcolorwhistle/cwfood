@@ -129,7 +129,7 @@ class MembersController extends Controller
                 $data['created_by'] = $this->user_id;
                 $data['updated_by'] = $this->user_id;
                 $data['client_id'] = $clientID;
-                if (!$request->filled('password')) {
+                if ($request->filled('password')) {
                     $data['password'] = Hash::make($request->password);
                 }else{
                     $data['password'] = Hash::make('Secret');
@@ -286,16 +286,6 @@ class MembersController extends Controller
 
             // Delete Cognito user only if NO other client associations exist
             if ($emailAssociations == 0) {
-                $controller = app(\App\Http\Controllers\CognitoUserController::class);
-                $response = $controller->destroy($user_details->email);
-                $decoded = $response->getData(true);
-                if ($decoded['ok'] === false) {
-                    DB::rollBack();
-                    return response()->json([
-                        'success' => false,
-                        'message' => $decoded['error']
-                    ]);
-                }
                 User::where('id', $member->user_id)->delete();
             }
             
