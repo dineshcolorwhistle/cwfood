@@ -96,37 +96,12 @@ class UserController extends Controller
 
             // Get validated data
             $data = $validator->validated();
-            
-            /**
-             * Create Cognito User
-             */
-            $controller = app(\App\Http\Controllers\CognitoUserController::class);
-            $response = $controller->store($data['email']);
-            $decoded = $response->getData(true); // decode JSON to array
-            if ($decoded['ok'] === false) {
-                return response()->json([
-                    'success' => false,
-                    'message' => $decoded['error']
-                ]);
-            }
 
-            // $data['password'] = 'Secret@#12312';
-            // $auth_res = Auth0SSOController::createUsers($data); // Create user in Auth0
-            // if($auth_res['httpcode'] != 201)
-            // {
-            //     if($auth_res['httpcode'] == 409){
-            //         return response()->json(['success' => false, 'message' => 'Oops! Something went wrong. Please contact Nutriflow Support.']);
-            //     }else{
-            //         return response()->json(['success' => false, 'message' => $auth_res['response']['message']]);
-            //     }
-            // }
-            // $auth_userID = $auth_res['response']['user_id'];
-            // $reset_url = Auth0SSOController::create_passwordchange_token($auth_userID); //Password reset token generate
-            // $data['auth0_userid'] = $auth_userID;
+            
             // Set default password if not provided
-            // if (!$request->filled('password')) {
-            //     $data['password'] = 'Secret';
-            // }
+            if (!$request->filled('password')) {
+                $data['password'] = Hash::make($request->password);
+            }
 
             // Set additional metadata
             $data['picture'] = $picturePath;
@@ -142,10 +117,10 @@ class UserController extends Controller
             // Create user
             $user = User::create($data);
 
-            Mail::send('email.signup', ['name'=>$data['name']], function($message) use($data){
-                $message->to($data['email']);
-                $message->subject('Welcome to Nutriflow - Get Started with Your Account');
-            });
+            // Mail::send('email.signup', ['name'=>$data['name']], function($message) use($data){
+            //     $message->to($data['email']);
+            //     $message->subject('Welcome to Nutriflow - Get Started with Your Account');
+            // });
 
             return response()->json([
                 'success' => true,
@@ -225,22 +200,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         try {
-            // if($user->auth0_userid){
-            //     Auth0SSOController::deleteUsers($user->auth0_userid);
-            // }
-
-            /**
-             * Remove Cognito User
-             */
-            $response = $controller->destroy($user->email);
-            $decoded = $response->getData(true); // decode JSON to array
-            if ($decoded['ok'] === false) {
-                return response()->json([
-                    'success' => false,
-                    'message' => $decoded['error']
-                ]);
-            }
-            
             // Delete user picture if exists
             if ($user->picture) {
                 Storage::disk('public')->delete($user->picture);

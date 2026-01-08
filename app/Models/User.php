@@ -72,8 +72,8 @@ class User extends Model implements Authenticatable
             'role_id' => 'required|exists:roles,id',
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             // 'password' => $id
-            //     ? 'nullable|min:6'
-            //     : 'nullable|min:6', // Default to 'Secret' if not provided
+            //     ? 'required|min:6'
+            //     : 'required|min:6', // Default to 'Secret' if not provided
         ];
     }
 

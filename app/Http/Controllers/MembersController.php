@@ -121,27 +121,19 @@ class MembersController extends Controller
                             }
                         }
                         
-                        $this->send_mail($data,$clientID); //Mail send to user
+                        // $this->send_mail($data,$clientID); //Mail send to user
                         return response()->json(['success' => true,'message' => 'Member created successfully']);
                     }
-                }
-
-                /**
-                 * Create Cognito User
-                */
-                $controller = app(\App\Http\Controllers\CognitoUserController::class);
-                $response = $controller->store($data['email']);
-                $decoded = $response->getData(true); // decode JSON to array
-                if ($decoded['ok'] === false) {
-                    return response()->json([
-                        'success' => false,
-                        'message' => $decoded['error']
-                    ]);
                 }
 
                 $data['created_by'] = $this->user_id;
                 $data['updated_by'] = $this->user_id;
                 $data['client_id'] = $clientID;
+                if (!$request->filled('password')) {
+                    $data['password'] = Hash::make($request->password);
+                }else{
+                    $data['password'] = Hash::make('Secret');
+                }
                 $user = User::create($data); //New user create
                 $remove = ['client_id', 'password'];
                 $memberArray = array_diff_key($data, array_flip($remove));
@@ -164,7 +156,7 @@ class MembersController extends Controller
                 /**
                  * Sending mail
                  */
-                $this->send_mail($data,$clientID); 
+                // $this->send_mail($data,$clientID); 
                 return response()->json([
                     'success' => true,
                     'message' => 'Member created successfully',

@@ -114,11 +114,11 @@
                             <input type="email" name="email" id="email" class="form-control" required>
                         </div>
 
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <label class="text-primary-orange" for="password">Password</label>
                             <input type="password" name="password" id="password" class="form-control" value="Secret">
                             <small class="form-text text-muted">Leave blank to keep current password<i>(Default Password: Secret)</i></small>
-                        </div> -->
+                        </div>
 
                         <div class="form-group d-flex flex-column gap-1">
                             <label class="text-primary-orange" for="role_id">Role <span class="text-danger">*</span></label>
