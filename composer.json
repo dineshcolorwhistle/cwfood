@@ -6,11 +6,20 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "aws/aws-sdk-php": "^3.356",
+        "barryvdh/laravel-dompdf": "^3.1",
+        "firebase/php-jwt": "^6.11",
+        "guzzlehttp/guzzle": "^7.9",
         "laravel/framework": "^11.9",
+        "laravel/socialite": "^5.23",
         "laravel/tinker": "^2.9",
         "league/csv": "^9.18",
-        "maatwebsite/excel": "^3.1",
-        "phpoffice/phpspreadsheet": "^1.29"
+        "maatwebsite/excel": "^3.1.51",
+        "openai-php/client": "^0.18.0",
+        "phpoffice/phpspreadsheet": "^1.29",
+        "socialiteproviders/cognito": "^4.1",
+        "stripe/stripe-php": "^18.0",
+        "xeroapi/xero-php-oauth2": "^10.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
