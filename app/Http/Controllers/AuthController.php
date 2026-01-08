@@ -43,25 +43,22 @@ class AuthController extends Controller
   
   	public function loginByEmail(Request $request)
     {
- 
-        $request->validate([
-            'email' => 'required|email'
+        $credentials = $request->validate([
+            'email'    => 'required|email',
+            'password' => 'required|string',
         ]);
 
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user) {
+        if (!Auth::attempt($credentials)) {
             return back()->withErrors([
-                'email' => 'User not found'
-            ]);
+                'password' => 'Invalid email or password.',
+            ])->withInput();
         }
-
-        Auth::login($user);
 
         $request->session()->regenerate();
 
         return redirect()->route('views.products');
     }
+
 
 
     public function company_authenticate(Request $request){
