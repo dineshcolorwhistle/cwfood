@@ -12,9 +12,6 @@ jobs:
     environment: staging
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Deploy to Staging
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -24,6 +21,14 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           script: |
             cd /home/eduwhistle-cwfood/htdocs/cwfood.eduwhistle.com
+
+            git config --global --add safe.directory "$(pwd)"
+
+            git fetch origin
+            git checkout main
+            git reset --hard origin/main
+
+            chmod +x deploy.sh
             ./deploy.sh
 
   deploy-production:
@@ -42,4 +47,12 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           script: |
             cd /home/eduwhistle-cwfoodproduction/htdocs/cwfoodproduction.eduwhistle.com
+
+            git config --global --add safe.directory "$(pwd)"
+
+            git fetch origin
+            git checkout main
+            git reset --hard origin/main
+
+            chmod +x deploy.sh
             ./deploy.sh
