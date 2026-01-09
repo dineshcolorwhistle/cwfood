@@ -1,19 +1,13 @@
-name: Deploy CWFood Laravel
-
-on:
-  push:
-    branches:
-      - main
-
 jobs:
-  deploy:
+  deploy-staging:
+    name: Deploy to Staging
     runs-on: ubuntu-latest
+    environment: staging
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Deploy to CloudPanel via SSH
+      - name: Deploy to Staging
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -21,4 +15,23 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            ~/deploy.sh
+            cd /home/cwfood-ssh/htdocs/eduwhistle-cwfood
+            ./deploy.sh
+
+  deploy-production:
+    name: Deploy to Production
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Deploy to Production
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            cd /home/cwfood-ssh/htdocs/eduwhistle-cwfoodproduction
+            ./deploy.sh
