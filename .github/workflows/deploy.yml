@@ -36,8 +36,7 @@ jobs:
             echo "STAGING: after pull"
             git log -1 --oneline
 
-            chmod +x deploy.sh
-            ./deploy.sh
+            bash deploy.sh staging
 
   deploy-production:
     name: Deploy to Production
@@ -70,5 +69,4 @@ jobs:
             echo "PRODUCTION: after pull"
             git log -1 --oneline
 
-            chmod +x deploy.sh
-            ./deploy.sh
+            bash deploy.sh prod
