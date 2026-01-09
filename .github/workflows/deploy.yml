@@ -20,13 +20,21 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
+            set -e
+
             cd /home/eduwhistle-cwfood/htdocs/cwfood.eduwhistle.com
 
             git config --global --add safe.directory "$(pwd)"
 
+            echo "STAGING: before pull"
+            git log -1 --oneline || true
+
             git fetch origin
             git checkout main
             git reset --hard origin/main
+
+            echo "STAGING: after pull"
+            git log -1 --oneline
 
             chmod +x deploy.sh
             ./deploy.sh
@@ -46,13 +54,21 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
+            set -e
+
             cd /home/eduwhistle-cwfoodproduction/htdocs/cwfoodproduction.eduwhistle.com
 
             git config --global --add safe.directory "$(pwd)"
 
+            echo "PRODUCTION: before pull"
+            git log -1 --oneline || true
+
             git fetch origin
             git checkout main
             git reset --hard origin/main
+
+            echo "PRODUCTION: after pull"
+            git log -1 --oneline
 
             chmod +x deploy.sh
             ./deploy.sh
