@@ -1,3 +1,10 @@
+name: Deploy CWFood Laravel
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   deploy-staging:
     name: Deploy to Staging
@@ -5,7 +12,8 @@ jobs:
     environment: staging
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Deploy to Staging
         uses: appleboy/ssh-action@v1.0.3
@@ -15,7 +23,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            cd /home/cwfood-ssh/htdocs/eduwhistle-cwfood
+            cd /home/eduwhistle-cwfood/htdocs/cwfood.eduwhistle.com
             ./deploy.sh
 
   deploy-production:
@@ -33,5 +41,5 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            cd /home/cwfood-ssh/htdocs/eduwhistle-cwfoodproduction
+            cd /home/eduwhistle-cwfoodproduction/htdocs/cwfoodproduction.eduwhistle.com
             ./deploy.sh
