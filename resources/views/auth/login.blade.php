@@ -44,7 +44,7 @@
                         <div class="card z-index-0 fadeIn3 fadeInBottom">
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2" style="margin-top: -30px;">
                                 <div class="linear-background shadow-primary border-radius-lg py-3 pe-1">
-                                    <h2 class="text-white font-weight-bolder text-center my-2">CW Food - Login page</h2>
+                                    <h2 class="text-white font-weight-bolder text-center my-2">CW Food - Login page new test</h2>
                                 </div>
                             </div>
                             <div class="card-body">
