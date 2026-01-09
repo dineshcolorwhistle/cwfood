@@ -69,6 +69,9 @@ class User extends Model implements Authenticatable
                 'email',
                 Rule::unique('users')->ignore($id)
             ],
+            'password'  => $id
+            ? 'nullable|string|min:6'
+            : 'required|string|min:6',
             'client_id' => 'nullable|exists:clients,id',
             'role_id' => 'required|exists:roles,id',
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',

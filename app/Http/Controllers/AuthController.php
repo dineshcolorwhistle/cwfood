@@ -41,33 +41,19 @@ class AuthController extends Controller
         return view('auth.signup');
     }
   
-  	public function loginByEmail(Request $request)
+    public function loginByEmail(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string',
         ]);
 
-        if ($validator->fails()) {
+        if (!Auth::attempt($credentials, $request->boolean('remember'))) {
             return back()->withErrors([
-                'email' => 'Invalid email or password.',
+                'email' => 'ds email or password.',
             ]);
         }
 
-        $user = User::where('email', $request->email)->first();
-        if (!$user) {
-            return back()->withErrors([
-                'email' => 'Invalid email or password.',
-            ]);
-        }
-
-        if (!Hash::check($request->password, $user->password)) {
-            return back()->withErrors([
-                'password' => 'Invalid email or password.',
-            ]);
-        }
-
-        Auth::login($user);
         $request->session()->regenerate();
         return redirect()->route('views.products');
     }

@@ -129,11 +129,7 @@ class MembersController extends Controller
                 $data['created_by'] = $this->user_id;
                 $data['updated_by'] = $this->user_id;
                 $data['client_id'] = $clientID;
-                if ($request->filled('password')) {
-                    $data['password'] = Hash::make($request->password);
-                }else{
-                    $data['password'] = Hash::make('Secret');
-                }
+                $data['password'] = $data['password'];
                 $user = User::create($data); //New user create
                 $remove = ['client_id', 'password'];
                 $memberArray = array_diff_key($data, array_flip($remove));

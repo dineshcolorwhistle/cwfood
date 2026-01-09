@@ -99,11 +99,7 @@ class UserController extends Controller
 
             
             // Always store the password as a hash in the database
-            if ($request->filled('password')) {
-                $data['password'] =Hash::make($request->input('password'));
-            } else {
-                $data['password'] =Hash::make('Secret');
-            }
+            $data['password'] = $data['password'];
 
             // Set additional metadata
             $data['picture'] = $picturePath;
