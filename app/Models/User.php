@@ -72,7 +72,7 @@ class User extends Model implements Authenticatable
             'client_id' => 'nullable|exists:clients,id',
             'role_id' => 'required|exists:roles,id',
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            // 'password' => $id
+            // 'password' => $id    
             //     ? 'required|min:6'
             //     : 'required|min:6', // Default to 'Secret' if not provided
         ];
