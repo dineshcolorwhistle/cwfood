@@ -72,15 +72,6 @@
                 </a>
             </li>
 
-
-            <!-- AI Prompt for Specification -->
-            <li class="nav-item">
-                <a class="nav-link text-white {{ request()->is('admin.table_schema.manage') ? 'active' : '' }}"
-                    href="{{ route('admin.table_schema.manage') }}">
-                    <span class="sidenav-normal ms-2 ps-1">Table Schema</span>
-                </a>
-            </li>
-
             <!-- Notifications Link -->
             <li class="nav-item">
                 <a class="nav-link text-white {{ request()->is('notifications*') ? 'active' : '' }}"
