@@ -50,7 +50,7 @@ class AuthController extends Controller
 
         if (!Auth::attempt($credentials, $request->boolean('remember'))) {
             return back()->withErrors([
-                'email' => 'ds email or password.',
+                'email' => 'Invalid email or password.',
             ]);
         }
 

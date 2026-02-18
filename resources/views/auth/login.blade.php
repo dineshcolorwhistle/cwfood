@@ -84,7 +84,7 @@
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-secondary-blue w-100 my-4 mb-2">Sign in</button>
-                                        <p class="mt-3">Don't have an account <a href="{{ route('signup') }}">Start free trial</a></p>
+                                        <!-- <p class="mt-3">Don't have an account <a href="{{ route('signup') }}">Start free trial</a></p> -->
                                     </div>
                                     <!-- <p class="text-sm text-center mt-3"> Forgot your password? Reset your password <a href="{{ route('password.request') }}" class="text-primary text-gradient font-weight-bold">here</a> </p> -->
                                 </form>
