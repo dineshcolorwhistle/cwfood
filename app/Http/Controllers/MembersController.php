@@ -212,7 +212,14 @@ class MembersController extends Controller
         $client = Client::where('id',$clientID)->pluck('name');
         $company_name = $client[0];
         $token = Str::random(64);
-        Mail::send('email.member-create', ['company'=>$company_name,'name'=>$data['name'], 'inviter'=> $userDetails[0]], function($message) use($data,$company_name){
+        DB::table('password_reset_tokens')->insert([
+            'email' => $data['email'],
+            'token' => $token,
+            'created_at' => Carbon::now(),
+        ]);
+        $resetUrl = route('reset.password.get', ['token' => $token]);
+
+        Mail::send('email.member-create', ['company'=>$company_name,'name'=>$data['name'], 'inviter'=> $userDetails[0],'resetUrl' => $resetUrl,], function($message) use($data,$company_name){
             $message->to($data['email']);
             $message->subject("Invitation to join {$company_name} on Batchbase");
         });
