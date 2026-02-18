@@ -93,6 +93,8 @@ Route::middleware('web')
         Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
       	Route::post('authenticate', [AuthController::class, 'loginByEmail'])->name('authenticate');
       	Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('password.request');
+      	Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+      	Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
       	Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('/csrf-refresh', function () {
             return response()->json(['token' => csrf_token()]);

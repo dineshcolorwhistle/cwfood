@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Mail;
@@ -115,10 +118,23 @@ class UserController extends Controller
             // Create user
             $user = User::create($data);
 
-            // Mail::send('email.signup', ['name'=>$data['name']], function($message) use($data){
-            //     $message->to($data['email']);
-            //     $message->subject('Welcome to Nutriflow - Get Started with Your Account');
-            // });
+            // Generate password reset token so new user can set their password via welcome email
+            $token = Str::random(64);
+            DB::table('password_reset_tokens')->insert([
+                'email' => $user->email,
+                'token' => $token,
+                'created_at' => Carbon::now(),
+            ]);
+
+            $resetUrl = route('reset.password.get', ['token' => $token]);
+
+            Mail::send('email.signup', [
+                'name' => $data['name'],
+                'resetUrl' => $resetUrl,
+            ], function ($message) use ($data) {
+                $message->to($data['email']);
+                $message->subject('Welcome to CW Food - Set Your Password & Get Started');
+            });
 
             return response()->json([
                 'success' => true,
