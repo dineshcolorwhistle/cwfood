@@ -25,7 +25,7 @@
                                     <p>Your account has been created. To get started, set your password using the link below. This link is valid for 24 hours.</p>
                                     <p><a href="{{ $resetUrl }}" target="_blank" style="display: inline-block; padding: 16px 36px; font-size: 16px; font-weight: 600; color: #ffffff; text-decoration: none; background-color: #328678; border-radius: 10px; font-family: 'Montserrat', Arial, sans-serif;">Set Your Password</a></p>
                                     <p style="margin-top: 20px;">After setting your password, you can log in at:</p>
-                                    <p><a href="{{ env('APP_URL') }}/login" target="_blank" style="color: #328678; text-decoration: underline;">Log in to CW Food</a></p>
+                                    <p><a href="{{ $loginUrl }}" target="_blank" style="color: #328678; text-decoration: underline;">Log in to CW Food</a></p>
                                 </td>
                             </tr>
                             <tr>

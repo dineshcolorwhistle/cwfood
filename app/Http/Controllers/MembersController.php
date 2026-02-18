@@ -218,8 +218,9 @@ class MembersController extends Controller
             'created_at' => Carbon::now(),
         ]);
         $resetUrl = route('reset.password.get', ['token' => $token]);
+        $loginUrl = route('login');
 
-        Mail::send('email.member-create', ['company'=>$company_name,'name'=>$data['name'], 'inviter'=> $userDetails[0],'resetUrl' => $resetUrl,], function($message) use($data,$company_name){
+        Mail::send('email.member-create', ['company'=>$company_name,'name'=>$data['name'], 'inviter'=> $userDetails[0],'resetUrl' => $resetUrl,'loginUrl' => $loginUrl], function($message) use($data,$company_name){
             $message->to($data['email']);
             $message->subject("Invitation to join {$company_name} on Batchbase");
         });

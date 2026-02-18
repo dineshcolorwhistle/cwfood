@@ -55,7 +55,7 @@
                     <div class="col-lg-5 col-md-8 col-12">
                         <div class="signup-section">
                             <div class="signup-logo">
-                                <img src="{{ asset('assets/img/signup-logo.png') }}" width="40%">
+                                <img src="{{ asset('assets/img/company-logos/68233c50a0963.png') }}" width="40%">
                             </div>
                             <div class="signup-heading">
                                 <h1 class="mt-5">Sign Up to Batchbase</h1>

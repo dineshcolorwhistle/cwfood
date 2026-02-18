@@ -22,7 +22,7 @@ if($details['ccs']){
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation">
                                         <tr>
                                             <td align="left">
-                                                <img src="{{ asset('assets/img/signup-logo.png') }}" alt="Batchbase" width="150" style="display: block; margin: 0 0 24px 0;">
+                                                <img src="{{ asset('assets/img/company-logos/68233c50a0963.png') }}" alt="Batchbase" width="150" style="display: block; margin: 0 0 24px 0;">
                                                 <span class="badge" style="display: inline-block; padding: 6px 16px; border-radius: 999px; background-color: rgba(255, 255, 255, 0.18); color: #ffffff; font-size: 12px; letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 18px;">Ticket Comment</span>
                                                 <h1 class="hero-title" style="margin: 0 0 12px 0; font-family: 'Montserrat', Arial, sans-serif; font-size: 30px; font-weight: 700; line-height: 1.2;">Support Ticket Comment</h1>
                                             </td>

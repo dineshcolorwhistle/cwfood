@@ -127,10 +127,12 @@ class UserController extends Controller
             ]);
 
             $resetUrl = route('reset.password.get', ['token' => $token]);
+            $loginUrl = route('login');
 
             Mail::send('email.signup', [
                 'name' => $data['name'],
                 'resetUrl' => $resetUrl,
+                'loginUrl' => $loginUrl,
             ], function ($message) use ($data) {
                 $message->to($data['email']);
                 $message->subject('Welcome to CW Food - Set Your Password & Get Started');
