@@ -12,7 +12,7 @@ echo "Starting deployment for environment: $ENV"
 echo "Working directory: $(pwd)"
 
 # Safety check (prevents wrong path deploy)
-if [[ "$ENV" == "staging" && "$(pwd)" != *"cwfood.eduwhistle.com"* ]]; then
+if [[ "$ENV" == "staging" && "$(pwd)" != *"cwfood.agentwhistle.com"* ]]; then
   echo "ERROR: Not in staging directory"
   exit 1
 fi
