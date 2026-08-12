@@ -95,6 +95,18 @@
             </div>
         </div>
     </main>
+
+    <!-- AI Chatbot Widget -->
+    <script 
+        src="https://aichat-langgraph.agentwhistle.com/widget/js/chat.js"
+        data-api-url="https://aichat-langgraph.agentwhistle.com"
+        data-namespace="colorwhistle"
+        data-company-name="ColorWhistle"
+        data-logo-url="https://colorwhistle.com/logo.svg"
+        data-position="bottom-right"
+    ></script>
+            
+
     <!-- <p>Session Lifetime: {{ config('session.lifetime') }} minutes</p> -->
     <script src="{{ asset('assets') }}/js/plugins/jquery-3.6.0.min.js"></script>
 
